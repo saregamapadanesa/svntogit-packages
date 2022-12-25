@@ -30,9 +30,9 @@ index bd19971..3e69f79 100644
  
  	libwps::WPSKind kind;
 -	libwps::WPSConfidence confidence = libwps::WPSDocument::isFileFormatSupported(&gsfInput, kind);
-+        libwps::WPSCreator creator;
++        libwps::WPSCreator nakal;
 +        bool needsEncoding = false;
-+	libwps::WPSConfidence confidence = libwps::WPSDocument::isFileFormatSupported(&gsfInput, kind, creator, needsEncoding);
++	libwps::WPSConfidence confidence = libwps::WPSDocument::isFileFormatSupported(&gsfInput, kind, nakal, needsEncoding);
  	
  	if (kind != libwps::WPS_TEXT)
  		confidence = libwps::WPS_CONFIDENCE_NONE;
