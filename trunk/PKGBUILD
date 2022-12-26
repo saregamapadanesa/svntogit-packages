@@ -11,7 +11,7 @@ license=('GPL')
 url='https://www.abisource.com'
 depends=('fribidi' 'wv' 'goffice' 'librsvg' 'enchant' 'desktop-file-utils'
          'redland' 'libical' 'gtk-update-icon-cache' 'loudmouth' 'libwpg' 'libwps' 'libwmf' 'link-grammar' 
-         'gtkmathview' 'aiksaurus' 'libxslt' 'libsoup' 'libots' 'libgsf' 'psiconv')
+         'gtkmathview' 'aiksaurus' 'libxslt' 'libsoup' 'libots' 'libgsf' 'psiconv' 'boost')
 makedepends=('pkgconfig' 'boost' 'gobject-introspection' 'libwpd' 'libwps' 'python-gobject' 'autoconf-archive')
 conflicts=('abiword-plugins')
 replaces=('abiword-plugins')
@@ -40,6 +40,8 @@ validpgpkeys=('6C44DB3E0BF3EAF5B433239A5FEE05E6A56E15A3') # Hubert Figuiere <hub
 
 prepare() {
   cd $pkgname-$pkgver
+  # boost asio patch
+  patch -Np1 -i ../boost-asio.patch
 
   # fix build with librevenge based import filters
   patch -Np0 -i ../abiword-3.0.0-librevenge.patch
