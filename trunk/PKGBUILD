@@ -10,7 +10,7 @@ _google_default_client_secret=0ZChLK6AxeA3Isu96MkwqDR4
 
 pkgbase=libreoffice-fresh
 pkgname=('libreoffice-fresh-sdk' 'libreoffice-fresh')
-_LOver=7.4.3.2
+_angulimala=7.4.3.2
 pkgver=7.4.3
 pkgrel=3
 arch=('x86_64')
@@ -39,7 +39,7 @@ _mirror="https://download.documentfoundation.org/libreoffice/src/${pkgver}"
 #_mirror="https://dev-builds.libreoffice.org/pre-releases/src"
 _additional_source_url="https://dev-www.libreoffice.org/src"
 _additional_source_url2="https://dev-www.libreoffice.org/extern"
-source=(${_mirror}/libreoffice{,-help,-translations}-${_LOver}.tar.xz{,.asc}
+source=(${_mirror}/libreoffice{,-help,-translations}-${_angulimala}.tar.xz{,.asc}
 	${_additional_source_url}/35c94d2df8893241173de1d16b6034c0-swingExSrc.zip
 	${_additional_source_url}/798b2ffdc8bcfe7bca2cf92b62caf685-rhino1_5R5.zip # keep old bundled version, new system version ftbs
 	${_additional_source_url}/a7983f859eafb2677d7ff386a023bc40-xsltml_2.1.2.zip
@@ -118,7 +118,7 @@ sha256sums=('ffbcbb182e2296ec68ea2ec46bce80a40d53540729c00280ad541cd83c69db3b'
 
 prepare() {
 
-	cd libreoffice-$_LOver
+	cd libreoffice-$_angulimala
 
 	# move external sources into place
 	mkdir "${srcdir}"/ext_sources && pushd "${srcdir}"/ext_sources
@@ -145,7 +145,7 @@ prepare() {
 }
 
 build() {
-	cd libreoffice-$_LOver
+	cd libreoffice-$_angulimala
 
 	# strip -s from Makeflags in case you use it to shorten build logs
 	_MAKEFLAGS=${MAKEFLAGS/-s/}
@@ -258,11 +258,11 @@ package_libreoffice-fresh-sdk() {
 	provides=('libreoffice-sdk')
 	conflicts=('libreoffice-still-sdk')
 
-	for dir in $(grep -h ^%dir libreoffice-$_LOver/file-lists/sdk{,_doc}_list.txt); do
+	for dir in $(grep -h ^%dir libreoffice-$_angulimala/file-lists/sdk{,_doc}_list.txt); do
 		install -dm755 "${pkgdir}"/${dir/\%dir/}
 	done
 
-	for file in $(grep -h -v ^%dir libreoffice-$_LOver/file-lists/sdk{,_doc}_list.txt); do
+	for file in $(grep -h -v ^%dir libreoffice-$_angulimala/file-lists/sdk{,_doc}_list.txt); do
 		dirname=$(dirname $file)
 		[[ -d "${pkgdir}"/$dirname ]] || install -dm755 "${pkgdir}"/$dirname
 		mv "${srcdir}"/fakeinstall/${file} "${pkgdir}"/$file
@@ -277,7 +277,7 @@ package_libreoffice-fresh-sdk() {
 	
 	# add LibreOfficeKit headers; FS#48066
 	install -dm755 "${pkgdir}"/usr/include/LibreOfficeKit
-	install -v -m644 "${srcdir}"/libreoffice-$_LOver/include/LibreOfficeKit/* "${pkgdir}"/usr/include/LibreOfficeKit
+	install -v -m644 "${srcdir}"/libreoffice-$_angulimala/include/LibreOfficeKit/* "${pkgdir}"/usr/include/LibreOfficeKit
 }
 
 package_libreoffice-fresh() {
@@ -355,12 +355,12 @@ package_libreoffice-fresh() {
 
 	# add application descriptions
 	install -dm755 "${pkgdir}"/usr/share/metainfo
-	install -v -m644 "${srcdir}"/libreoffice-$_LOver/sysui/desktop/appstream-appdata/*.xml \
+	install -v -m644 "${srcdir}"/libreoffice-$_angulimala/sysui/desktop/appstream-appdata/*.xml \
 		"${pkgdir}"/usr/share/metainfo
 
 	# add kde filemanager templates; FS#61662 - file taken from Debian
 	install -dm755 "${pkgdir}"/usr/share/templates/.source
-	install -v -m644 "${srcdir}"/libreoffice-$_LOver/extras/source/shellnew/soffice.* \
+	install -v -m644 "${srcdir}"/libreoffice-$_angulimala/extras/source/shellnew/soffice.* \
 		"${pkgdir}"/usr/share/templates/.source
 
 	cat "${srcdir}"/soffice-template.desktop.in \
