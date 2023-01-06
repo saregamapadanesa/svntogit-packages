@@ -25,14 +25,14 @@ validpgpkeys=('27EDEAF22F3ABCEB50DB9A125CC908FDB71E12C2') # Daniel Stenberg
 
 _configure_options=(
   --prefix='/usr'
-  --mandir='/usr/share/man'
+  --mandir='/usr/share/man
   --disable-ldap
   --disable-ldaps
   --disable-manual
   --enable-ipv6
   --enable-threaded-resolver
   --with-gssapi
-  --with-libssh2
+  --disable-static
   --with-random='/dev/urandom'
   --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
 )
