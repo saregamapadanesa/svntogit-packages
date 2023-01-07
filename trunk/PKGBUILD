@@ -111,13 +111,6 @@ package_postfix() {
 
   depends+=(db libsasl openssl zlib libicuuc.so libnsl.so)
   optdepends=(
-    'perl: for postfix-collate.pl, postfix-tlstype.pl and qshape'
-    'postfix-cdb: for CDB integration'
-    'postfix-ldap: for LDAP integration'
-    'postfix-lmdb: for LMDB integration'
-    'postfix-mysql: for MySQL integration'
-    'postfix-pcre: for PCRE integration'
-    'postfix-pgsql: for PostgreSQL integration'
     'postfix-sqlite: for SQLite integration'
   )
   conflicts=(smtp-server smtp-forwarder)
