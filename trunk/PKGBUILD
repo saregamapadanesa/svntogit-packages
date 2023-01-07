@@ -112,6 +112,7 @@ package_postfix() {
   depends+=(db libsasl openssl zlib libicuuc.so libnsl.so)
   optdepends=(
     'postfix-sqlite: for SQLite integration'
+    'postfix-pgsql: for PostgreSQL integration'
   )
   conflicts=(smtp-server smtp-forwarder)
   provides=(smtp-server smtp-forwarder)
